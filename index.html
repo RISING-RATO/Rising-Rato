@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Product Swiper👕</title>
+  <link rel='stylesheet' href='https://unpkg.com/swiper/swiper-bundle.min.css'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rising Rato - Premium Clothing Store</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root {
+			--primary: #ff6b6b;
+			--secondary: #4ecdc4;
+			--dark: #1a1a2e;
+			--darker: #16213e;
+			--light: #f8f9fa;
+			--gray: #6c757d;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body {
+			background-color: var(--dark);
+			color: var(--light);
+			line-height: 1.6;
+		}
+
+		header {
+			background-color: var(--darker);
+			padding: 1rem 0;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.header-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.logo img {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.logo h1 {
+			font-size: 1.8rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			gap: 1.5rem;
+		}
+
+		nav a {
+			color: var(--light);
+			text-decoration: none;
+			font-weight: 500;
+			transition: color 0.3s;
+			position: relative;
+		}
+
+		nav a:hover {
+			color: var(--primary);
+		}
+
+		nav a::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			background: var(--primary);
+			bottom: -5px;
+			left: 0;
+			transition: width 0.3s;
+		}
+
+		nav a:hover::after {
+			width: 100%;
+		}
+
+		.cart-icon {
+			position: relative;
+			cursor: pointer;
+		}
+
+		.cart-count {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: var(--primary);
+			color: white;
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 0.8rem;
+		}
+
+		.hero {
+			position: relative;
+			height: 80vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+
+		.hero-video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: -1;
+		}
+
+		.hero-content {
+			text-align: center;
+			z-index: 1;
+			background-color: rgba(0, 0, 0, 0.7);
+			padding: 2rem;
+			border-radius: 10px;
+			max-width: 800px;
+		}
+
+		.hero h2 {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		}
+
+		.hero p {
+			font-size: 1.2rem;
+			margin-bottom: 2rem;
+		}
+
+		.btn {
+			display: inline-block;
+			padding: 0.8rem 1.8rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			color: white;
+			border: none;
+			border-radius: 50px;
+			cursor: pointer;
+			font-weight: 600;
+			text-decoration: none;
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		.btn:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		section {
+			padding: 4rem 0;
+		}
+
+		.section-title {
+			text-align: center;
+			margin-bottom: 3rem;
+			font-size: 2.5rem;
+			position: relative;
+		}
+
+		.section-title::after {
+			content: '';
+			position: absolute;
+			width: 100px;
+			height: 4px;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			border-radius: 2px;
+		}
+
+		.products-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			gap: 2rem;
+		}
+
+		.product-card {
+			background-color: var(--darker);
+			border-radius: 10px;
+			overflow: hidden;
+			transition: transform 0.3s, box-shadow 0.3s;
+			position: relative;
+		}
+
+		.product-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+		}
+
+		.product-image {
+			width: 100%;
+			height: 300px;
+			object-fit: cover;
+		}
+
+		.product-info {
+			padding: 1.5rem;
+		}
+
+		.product-title {
+			font-size: 1.2rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.product-price {
+			color: var(--primary);
+			font-weight: 700;
+			margin-bottom: 1rem;
+		}
+
+		.product-actions {
+			display: flex;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		.add-to-cart {
+			flex: 1;
+			background-color: var(--primary);
+			color: white;
+			border: none;
+			padding: 0.5rem;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.add-to-cart:hover {
+			background-color: #ff5252;
+		}
+
+		.buy-now {
+			flex: 1;
+			background-color: var(--secondary);
+			color: white;
+			border: none;
+			padding: 0.5rem;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.buy-now:hover {
+			background-color: #3dbeb6;
+		}
+
+		.contact {
+			background-color: var(--darker);
+			padding: 4rem 0;
+		}
+
+		.contact-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.social-links {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			margin-top: 2rem;
+			flex-wrap: wrap;
+		}
+
+		.social-link {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-decoration: none;
+			color: var(--light);
+			transition: transform 0.3s;
+		}
+
+		.social-link:hover {
+			transform: translateY(-5px);
+			color: var(--primary);
+		}
+
+		.social-icon {
+			width: 60px;
+			height: 60px;
+			object-fit: contain;
+			margin-bottom: 0.5rem;
+		}
+
+		.email-contact {
+			margin-top: 2rem;
+			text-align: center;
+		}
+
+		.email-contact a {
+			color: var(--primary);
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		footer {
+			background-color: var(--darker);
+			padding: 2rem 0;
+			text-align: center;
+		}
+
+		.footer-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.footer-logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			margin-bottom: 1rem;
+		}
+
+		.footer-logo img {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.footer-logo h2 {
+			font-size: 1.5rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		}
+
+		.copyright {
+			color: var(--gray);
+			font-size: 0.9rem;
+		}
+
+		/* Cart Modal */
+		.cart-modal {
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 400px;
+			height: 100vh;
+			background-color: var(--darker);
+			box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+			transition: right 0.3s;
+			z-index: 1000;
+			padding: 1.5rem;
+			overflow-y: auto;
+		}
+
+		.cart-modal.active {
+			right: 0;
+		}
+
+		.cart-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1.5rem;
+			padding-bottom: 1rem;
+			border-bottom: 1px solid var(--gray);
+		}
+
+		.close-cart {
+			background: none;
+			border: none;
+			color: var(--light);
+			font-size: 1.5rem;
+			cursor: pointer;
+		}
+
+		.cart-items {
+			margin-bottom: 1.5rem;
+		}
+
+		.cart-item {
+			display: flex;
+			gap: 1rem;
+			margin-bottom: 1rem;
+			padding-bottom: 1rem;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.cart-item-image {
+			width: 80px;
+			height: 80px;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+
+		.cart-item-details {
+			flex: 1;
+		}
+
+		.cart-item-title {
+			font-size: 1rem;
+			margin-bottom: 0.3rem;
+		}
+
+		.cart-item-price {
+			color: var(--primary);
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.cart-item-remove {
+			background: none;
+			border: none;
+			color: var(--gray);
+			cursor: pointer;
+			font-size: 0.8rem;
+		}
+
+		.cart-item-remove:hover {
+			color: var(--primary);
+		}
+
+		.cart-total {
+			display: flex;
+			justify-content: space-between;
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin-bottom: 1.5rem;
+		}
+
+		.checkout-btn {
+			width: 100%;
+			padding: 1rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-weight: 600;
+			transition: transform 0.3s;
+		}
+
+		.checkout-btn:hover {
+			transform: translateY(-3px);
+		}
+
+		.overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 999;
+			display: none;
+		}
+
+		.overlay.active {
+			display: block;
+		}
+
+		/* Payment Modal */
+		.payment-modal {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: var(--darker);
+			padding: 2rem;
+			border-radius: 10px;
+			z-index: 1001;
+			width: 90%;
+			max-width: 500px;
+			display: none;
+		}
+
+		.payment-modal.active {
+			display: block;
+		}
+
+		.payment-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1.5rem;
+		}
+
+		.close-payment {
+			background: none;
+			border: none;
+			color: var(--light);
+			font-size: 1.5rem;
+			cursor: pointer;
+		}
+
+		.payment-options {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.payment-option {
+			background-color: var(--dark);
+			border: 1px solid var(--gray);
+			border-radius: 5px;
+			padding: 1rem;
+			text-align: center;
+			cursor: pointer;
+			transition: border-color 0.3s;
+		}
+
+		.payment-option:hover {
+			border-color: var(--primary);
+		}
+
+		.payment-option img {
+			width: 100%;
+			max-height: 40px;
+			object-fit: contain;
+			margin-bottom: 0.5rem;
+		}
+
+		.payment-form {
+			display: none;
+		}
+
+		.payment-form.active {
+			display: block;
+		}
+
+		.form-group {
+			margin-bottom: 1rem;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+
+		.form-group input {
+			width: 100%;
+			padding: 0.8rem;
+			background-color: var(--dark);
+			border: 1px solid var(--gray);
+			border-radius: 5px;
+			color: var(--light);
+		}
+
+		.pay-now-btn {
+			width: 100%;
+			padding: 1rem;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-weight: 600;
+			margin-top: 1rem;
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.header-content {
+				flex-direction: column;
+				gap: 1rem;
+			}
+
+			nav ul {
+				gap: 1rem;
+			}
+
+			.hero h2 {
+				font-size: 2rem;
+			}
+
+			.products-grid {
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			}
+
+			.cart-modal {
+				width: 90%;
+			}
+
+			.payment-options {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 480px) {
+			nav ul {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.hero {
+				height: 60vh;
+			}
+
+			.hero-content {
+				padding: 1rem;
+			}
+
+			.products-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Header -->
+	<header>
+		<div class="container">
+			<div class="header-content">
+				<div class="logo">
+					<img src="https://i.postimg.cc/rwVxf0CR/41ef5094-aa57-4a5d-be0d-1a919bdf95cd.png" alt="Rising Rato Logo">
+					<h1>Rising Rato</h1>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#tshirts">T-Shirts</a></li>
+						<li><a href="#hoodies">Hoodies</a></li>
+						<li><a href="#pants">Pants</a></li>
+						<li><a href="#joggers">Joggers</a></li>
+						<li><a href="#contact">Contact</a></li>
+						<li>
+							<div class="cart-icon">
+								<i class="fas fa-shopping-cart"></i>
+								<span class="cart-count">0</span>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<!-- Hero Section -->
+	<section id="home" class="hero">
+		<video class="hero-video" autoplay muted loop>
+			<source src="https://www.youtube.com/embed/dnNJr1bEP1Q" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+
+		<div class="hero-content">
+			<h2>Elevate Your Style</h2>
+			<p>Discover premium quality clothing that reflects your personality and ambition. Rising Rato brings you the perfect blend of comfort and style.</p>
+			<a href="#tshirts" class="btn">Shop Now</a>
+		</div>
+	</section>
+
+	<!-- T-Shirts Section -->
+	<section id="tshirts" class="products">
+		<div class="container">
+			<h2 class="section-title">T-Shirts</h2>
+			<div class="products-grid">
+				<!-- T-Shirt 1 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/Twrz24ys/Dreams-aren-t-found-in-the-stars-they-re-built-in-the-struggles.png" alt="T-Shirt 1" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Dreams Struggle T-Shirt</h3>
+						<p class="product-price">₹1,299</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="1" data-name="Dreams Struggle T-Shirt" data-price="1299" data-image="https://i.postimg.cc/Twrz24ys/Dreams-aren-t-found-in-the-stars-they-re-built-in-the-struggles.png">Add to Cart</button>
+							<button class="buy-now" data-id="1" data-name="Dreams Struggle T-Shirt" data-price="1299" data-image="https://i.postimg.cc/Twrz24ys/Dreams-aren-t-found-in-the-stars-they-re-built-in-the-struggles.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 2 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/Y0MJvzYC/image-4.jpg" alt="T-Shirt 2" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Urban Style T-Shirt</h3>
+						<p class="product-price">₹1,199</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="2" data-name="Urban Style T-Shirt" data-price="1199" data-image="https://i.postimg.cc/Y0MJvzYC/image-4.jpg">Add to Cart</button>
+							<button class="buy-now" data-id="2" data-name="Urban Style T-Shirt" data-price="1199" data-image="https://i.postimg.cc/Y0MJvzYC/image-4.jpg">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 3 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/kGsLKRvF/image-4.jpg" alt="T-Shirt 3" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Classic Black T-Shirt</h3>
+						<p class="product-price">₹1,099</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="3" data-name="Classic Black T-Shirt" data-price="1099" data-image="https://i.postimg.cc/kGsLKRvF/image-4.jpg">Add to Cart</button>
+							<button class="buy-now" data-id="3" data-name="Classic Black T-Shirt" data-price="1099" data-image="https://i.postimg.cc/kGsLKRvF/image-4.jpg">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 4 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/T2JzZBvL/Screen-Shot-2025-04-30-at-15-05-15.png" alt="T-Shirt 4" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Graphic Print T-Shirt</h3>
+						<p class="product-price">₹1,499</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="4" data-name="Graphic Print T-Shirt" data-price="1499" data-image="https://i.postimg.cc/T2JzZBvL/Screen-Shot-2025-04-30-at-15-05-15.png">Add to Cart</button>
+							<button class="buy-now" data-id="4" data-name="Graphic Print T-Shirt" data-price="1499" data-image="https://i.postimg.cc/T2JzZBvL/Screen-Shot-2025-04-30-at-15-05-15.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 5 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/NFDQrtx1/image-10.png" alt="T-Shirt 5" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Premium Cotton T-Shirt</h3>
+						<p class="product-price">₹1,399</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="5" data-name="Premium Cotton T-Shirt" data-price="1399" data-image="https://i.postimg.cc/NFDQrtx1/image-10.png">Add to Cart</button>
+							<button class="buy-now" data-id="5" data-name="Premium Cotton T-Shirt" data-price="1399" data-image="https://i.postimg.cc/NFDQrtx1/image-10.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 6 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/hvcSjvVD/image-11.png" alt="T-Shirt 6" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Street Style T-Shirt</h3>
+						<p class="product-price">₹1,249</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="6" data-name="Street Style T-Shirt" data-price="1249" data-image="https://i.postimg.cc/hvcSjvVD/image-11.png">Add to Cart</button>
+							<button class="buy-now" data-id="6" data-name="Street Style T-Shirt" data-price="1249" data-image="https://i.postimg.cc/hvcSjvVD/image-11.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 7 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/wxQqr5d7/image-9.png" alt="T-Shirt 7" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Minimalist T-Shirt</h3>
+						<p class="product-price">₹1,099</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="7" data-name="Minimalist T-Shirt" data-price="1099" data-image="https://i.postimg.cc/wxQqr5d7/image-9.png">Add to Cart</button>
+							<button class="buy-now" data-id="7" data-name="Minimalist T-Shirt" data-price="1099" data-image="https://i.postimg.cc/wxQqr5d7/image-9.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- T-Shirt 8 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/x8LqqBkQ/Untitled-2.png" alt="T-Shirt 8" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Casual Fit T-Shirt</h3>
+						<p class="product-price">₹1,199</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="8" data-name="Casual Fit T-Shirt" data-price="1199" data-image="https://i.postimg.cc/x8LqqBkQ/Untitled-2.png">Add to Cart</button>
+							<button class="buy-now" data-id="8" data-name="Casual Fit T-Shirt" data-price="1199" data-image="https://i.postimg.cc/x8LqqBkQ/Untitled-2.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Hoodies Section -->
+	<section id="hoodies" class="products">
+		<div class="container">
+			<h2 class="section-title">Hoodies</h2>
+			<div class="products-grid">
+				<!-- Hoodie 1 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/wxZpZtRC/image-13.png" alt="Hoodie 1" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Premium Black Hoodie</h3>
+						<p class="product-price">₹4,999</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="9" data-name="Premium Black Hoodie" data-price="4999" data-image="https://i.postimg.cc/wxZpZtRC/image-13.png">Add to Cart</button>
+							<button class="buy-now" data-id="9" data-name="Premium Zip Hoodie" data-price="4999" data-image="https://i.postimg.cc/nLn7ws4Q/image-13.jpg">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hoodie 2 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/0NVgfrqH/image-14.png" alt="Hoodie 2" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Streetwear Hoodie</h3>
+						<p class="product-price">₹5,499</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="10" data-name="Streetwear Hoodie" data-price="5499" data-image="https://i.postimg.cc/0NVgfrqH/image-14.png">Add to Cart</button>
+							<button class="buy-now" data-id="10" data-name="Streetwear Hoodie" data-price="5499" data-image="https://i.postimg.cc/0NVgfrqH/image-14.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hoodie 3 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/5t4dLLDC/image-15.png" alt="Hoodie 3" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Oversized Hoodie</h3>
+						<p class="product-price">₹5,799</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="11" data-name="Oversized Hoodie" data-price="5799" data-image="https://i.postimg.cc/5t4dLLDC/image-15.png">Add to Cart</button>
+							<button class="buy-now" data-id="11" data-name="Oversized Hoodie" data-price="5799" data-image="https://i.postimg.cc/5t4dLLDC/image-15.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hoodie 4 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/Z5FzWVsm/image-16.png" alt="Hoodie 4" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Graphic Print Hoodie</h3>
+						<p class="product-price">₹5,299</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="12" data-name="Graphic Print Hoodie" data-price="5299" data-image="https://i.postimg.cc/Z5FzWVsm/image-16.png">Add to Cart</button>
+							<button class="buy-now" data-id="12" data-name="Graphic Print Hoodie" data-price="5299" data-image="https://i.postimg.cc/Z5FzWVsm/image-16.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hoodie 5 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/bwjjYKTL/image-17.png" alt="Hoodie 5" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Pullover Hoodie</h3>
+						<p class="product-price">₹4,899</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="13" data-name="Pullover Hoodie" data-price="4899" data-image="https://i.postimg.cc/bwjjYKTL/image-17.png">Add to Cart</button>
+							<button class="buy-now" data-id="13" data-name="Pullover Hoodie" data-price="4899" data-image="https://i.postimg.cc/bwjjYKTL/image-17.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hoodie 6 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/MXkf0XZH/image-6.png" alt="Hoodie 6" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Urban Hoodie</h3>
+						<p class="product-price">₹5,599</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="14" data-name="Urban Hoodie" data-price="5599" data-image="https://i.postimg.cc/MXkf0XZH/image-6.png">Add to Cart</button>
+							<button class="buy-now" data-id="14" data-name="Urban Hoodie" data-price="5599" data-image="https://i.postimg.cc/MXkf0XZH/image-6.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pants Section -->
+	<section id="pants" class="products">
+		<div class="container">
+			<h2 class="section-title">Pants</h2>
+			<div class="products-grid">
+				<!-- Pants 1 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/h48SzLyK/image-20.png" alt="Pants 1" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Slim Fit Pants</h3>
+						<p class="product-price">₹3,499</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="15" data-name="Slim Fit Pants" data-price="3499" data-image="https://i.postimg.cc/h48SzLyK/image-20.png">Add to Cart</button>
+							<button class="buy-now" data-id="15" data-name="Slim Fit Pants" data-price="3499" data-image="https://i.postimg.cc/h48SzLyK/image-20.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Pants 2 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/W1vXT1ms/image-3.jpg" alt="Pants 2" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Casual Pants</h3>
+						<p class="product-price">₹3,199</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="16" data-name="Casual Pants" data-price="3199" data-image="https://i.postimg.cc/W1vXT1ms/image-3.jpg">Add to Cart</button>
+							<button class="buy-now" data-id="16" data-name="Casual Pants" data-price="3199" data-image="https://i.postimg.cc/W1vXT1ms/image-3.jpg">Buy Now</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Joggers Section -->
+	<section id="joggers" class="products">
+		<div class="container">
+			<h2 class="section-title">Joggers & Trousers</h2>
+			<div class="products-grid">
+				<!-- Joggers 1 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/fbX44s1M/image-19.png" alt="Joggers 1" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Premium Joggers</h3>
+						<p class="product-price">₹3,899</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="17" data-name="Premium Joggers" data-price="3899" data-image="https://i.postimg.cc/fbX44s1M/image-19.png">Add to Cart</button>
+							<button class="buy-now" data-id="17" data-name="Premium Joggers" data-price="3899" data-image="https://i.postimg.cc/fbX44s1M/image-19.png">Buy Now</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Joggers 2 -->
+				<div class="product-card">
+					<img src="https://i.postimg.cc/x15yQyTP/image-2.jpg" alt="Joggers 2" class="product-image">
+					<div class="product-info">
+						<h3 class="product-title">Casual Trousers</h3>
+						<p class="product-price">₹4,299</p>
+						<div class="product-actions">
+							<button class="add-to-cart" data-id="18" data-name="Casual Trousers" data-price="4299" data-image="https://i.postimg.cc/x15yQyTP/image-2.jpg">Add to Cart</button>
+							<button class="buy-now" data-id="18" data-name="Casual Trousers" data-price="4299" data-image="https://i.postimg.cc/x15yQyTP/image-2.jpg">Buy Now</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="hero-content">
+		<h2>NOTICE</h2>
+		<p>We're currently experiencing issues with our website's payment system and apologize for the inconvenience. While we work on fixing it, we kindly ask customers to reach out to us through our social media channels to place orders or inquire about products. We're here to assist you and ensure a smooth shopping experience. Thank you for your patience and continued support!</p>
+
+	</div>
+	<!-- Contact Section -->
+	<section id="contact" class="contact">
+		<div class="container contact-container">
+			<h2 class="section-title">Connect With Us</h2>
+			<p>Follow us on social media for the latest updates and exclusive offers.</p>
+
+			<div class="social-links">
+				<a href="https://www.instagram.com/rising_rato/" class="social-link" target="_blank">
+					<img src="https://i.postimg.cc/RZW4SWcT/Screen-Shot-2025-05-09-at-22-54-18.png" alt="Instagram" class="social-icon">
+					<span>Instagram</span>
+				</a>
+				<a href="https://www.facebook.com/people/Rising-Rato/61575060101543/" class="social-link" target="_blank">
+					<img src="https://i.postimg.cc/25NJsyTy/Screen-Shot-2025-05-09-at-22-57-34.png" alt="Facebook" class="social-icon">
+					<span>Facebook</span>
+				</a>
+				<a href="https://www.tiktok.com/@rising_rato" class="social-link" target="_blank">
+					<img src="https://i.postimg.cc/hvmZZqxT/Screen-Shot-2025-05-09-at-23-01-27.png" alt="TikTok" class="social-icon">
+					<span>TikTok</span>
+				</a>
+				<a href="https://www.youtube.com/@risingrato123" class="social-link" target="_blank">
+					<img src="https://i.postimg.cc/y8LjPN52/Screen-Shot-2025-05-09-at-23-04-17.png" alt="YouTube" class="social-icon">
+					<span>YouTube</span>
+				</a>
+				<a href="https://x.com/Rising_rato" class="social-link" target="_blank">
+					<img src="https://i.postimg.cc/Wz7YcwW1/Screen-Shot-2025-05-09-at-23-10-59.png" alt="Twitter" class="social-icon">
+					<span>Twitter</span>
+				</a>
+			</div>
+
+			<div class="email-contact">
+				<p>For inquiries, email us at:</p>
+				<a href="mailto:aadarshkhatri36@gmail.com">aadarshkhatri36@gmail.com</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-logo">
+					<img src="https://i.postimg.cc/rwVxf0CR/41ef5094-aa57-4a5d-be0d-1a919bdf95cd.png" alt="Rising Rato Logo">
+					<h2>Rising Rato</h2>
+				</div>
+				<p class="copyright">&copy; 2025 Rising Rato. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Cart Modal -->
+	<div class="cart-modal">
+		<div class="cart-header">
+			<h3>Your Cart</h3>
+			<button class="close-cart">&times;</button>
+		</div>
+		<div class="cart-items">
+			<!-- Cart items will be added here dynamically -->
+		</div>
+		<div class="cart-total">
+			<span>Total:</span>
+			<span class="total-price">₹0</span>
+		</div>
+		<button class="checkout-btn">Proceed to Checkout</button>
+	</div>
+
+	<!-- Overlay -->
+	<div class="overlay"></div>
+
+	<!-- Payment Modal -->
+	<div class="payment-modal">
+		<div class="payment-header">
+			<h3>Payment Options</h3>
+			<button class="close-payment">&times;</button>
+		</div>
+		<div class="payment-options">
+			<div class="payment-option" data-payment="credit-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/179/179457.png" alt="Credit Card">
+				<span>Credit Card</span>
+			</div>
+			<div class="payment-option" data-payment="debit-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/179/179457.png" alt="Debit Card">
+				<span>Debit Card</span>
+			</div>
+			<div class="payment-option" data-payment="paypal">
+				<img src="https://cdn-icons-png.flaticon.com/512/174/174861.png" alt="PayPal">
+				<span>PayPal</span>
+			</div>
+			<div class="payment-option" data-payment="upi">
+				<img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="UPI">
+				<span>UPI</span>
+			</div>
+		</div>
+
+		<!-- Credit/Debit Card Form -->
+		<div class="payment-form" id="credit-card-form">
+			<div class="form-group">
+				<label for="card-number">Card Number</label>
+				<input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+			</div>
+			<div class="form-group">
+				<label for="card-name">Name on Card</label>
+				<input type="text" id="card-name" placeholder="John Doe">
+			</div>
+			<div class="form-group">
+				<label for="card-expiry">Expiry Date</label>
+				<input type="text" id="card-expiry" placeholder="MM/YY">
+			</div>
+			<div class="form-group">
+				<label for="card-cvv">CVV</label>
+				<input type="text" id="card-cvv" placeholder="123">
+			</div>
+			<button class="pay-now-btn">Pay Now</button>
+		</div>
+
+		<!-- UPI Form -->
+		<div class="payment-form" id="upi-form">
+			<div class="form-group">
+				<label for="upi-id">UPI ID</label>
+				<input type="text" id="upi-id" placeholder="yourname@upi">
+			</div>
+			<button class="pay-now-btn">Pay Now</button>
+		</div>
+
+		<!-- PayPal will redirect to their site -->
+		<div class="payment-form" id="paypal-form">
+			<p>You will be redirected to PayPal to complete your payment.</p>
+			<button class="pay-now-btn">Continue to PayPal</button>
+		</div>
+	</div>
+
+	<script>
+		// Cart functionality
+		document.addEventListener('DOMContentLoaded', function() {
+			const cartIcon = document.querySelector('.cart-icon');
+			const cartModal = document.querySelector('.cart-modal');
+			const overlay = document.querySelector('.overlay');
+			const closeCart = document.querySelector('.close-cart');
+			const addToCartButtons = document.querySelectorAll('.add-to-cart');
+			const buyNowButtons = document.querySelectorAll('.buy-now');
+			const cartItemsContainer = document.querySelector('.cart-items');
+			const cartCount = document.querySelector('.cart-count');
+			const totalPrice = document.querySelector('.total-price');
+			const checkoutBtn = document.querySelector('.checkout-btn');
+			const paymentModal = document.querySelector('.payment-modal');
+			const closePayment = document.querySelector('.close-payment');
+			const paymentOptions = document.querySelectorAll('.payment-option');
+			const paymentForms = document.querySelectorAll('.payment-form');
+			let cart = [];
+			// Toggle cart modal
+			cartIcon.addEventListener('click', toggleCart);
+			closeCart.addEventListener('click', toggleCart);
+			overlay.addEventListener('click', toggleCart);
+
+			function toggleCart() {
+				cartModal.classList.toggle('active');
+				overlay.classList.toggle('active');
+			}
+			// Add to cart functionality
+			addToCartButtons.forEach(button => {
+				button.addEventListener('click', addToCart);
+			});
+			// Buy now functionality
+			buyNowButtons.forEach(button => {
+				button.addEventListener('click', buyNow);
+			});
+
+			function addToCart(e) {
+				const button = e.target;
+				const product = {
+					id: button.dataset.id,
+					name: button.dataset.name,
+					price: parseInt(button.dataset.price),
+					image: button.dataset.image,
+					quantity: 1
+				};
+				// Check if product already in cart
+				const existingItem = cart.find(item => item.id === product.id);
+				if (existingItem) {
+					existingItem.quantity += 1;
+				} else {
+					cart.push(product);
+				}
+				updateCart();
+				toggleCart();
+			}
+
+			function buyNow(e) {
+				addToCart(e);
+				checkoutBtn.click();
+			}
+
+			function updateCart() {
+				// Update cart count
+				const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+				cartCount.textContent = totalItems;
+				// Update cart items
+				cartItemsContainer.innerHTML = '';
+				if (cart.length === 0) {
+					cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+					totalPrice.textContent = '₹0';
+					return;
+				}
+				let total = 0;
+				cart.forEach(item => {
+					const cartItem = document.createElement('div');
+					cartItem.classList.add('cart-item');
+					cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">₹${item.price} x ${item.quantity}</p>
+                            <button class="cart-item-remove" data-id="${item.id}">Remove</button>
+                        </div>
+                    `;
+					cartItemsContainer.appendChild(cartItem);
+					total += item.price * item.quantity;
+				});
+				// Update total price
+				totalPrice.textContent = `₹${total}`;
+				// Add event listeners to remove buttons
+				const removeButtons = document.querySelectorAll('.cart-item-remove');
+				removeButtons.forEach(button => {
+					button.addEventListener('click', removeFromCart);
+				});
+			}
+
+			function removeFromCart(e) {
+				const id = e.target.dataset.id;
+				cart = cart.filter(item => item.id !== id);
+				updateCart();
+			}
+			// Checkout functionality
+			checkoutBtn.addEventListener('click', function() {
+				if (cart.length === 0) {
+					alert('Your cart is empty!');
+					return;
+				}
+				toggleCart();
+				paymentModal.classList.add('active');
+				overlay.classList.add('active');
+			});
+			// Payment modal functionality
+			closePayment.addEventListener('click', function() {
+				paymentModal.classList.remove('active');
+				overlay.classList.remove('active');
+			});
+			// Payment options selection
+			paymentOptions.forEach(option => {
+				option.addEventListener('click', function() {
+					const paymentMethod = this.dataset.payment;
+					// Hide all forms
+					paymentForms.forEach(form => {
+						form.classList.remove('active');
+					});
+					// Show selected form
+					document.getElementById(`${paymentMethod}-form`).classList.add('active');
+				});
+			});
+			// Pay now buttons
+			const payNowButtons = document.querySelectorAll('.pay-now-btn');
+			payNowButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					alert('Sorry Couldn’t be purchased.');
+					cart = [];
+					updateCart();
+					paymentModal.classList.remove('active');
+					overlay.classList.remove('active');
+				});
+			});
+			// Initialize empty cart
+			updateCart();
+		});
+	</script>
+</body>
+
+</html>
+<!-- partial -->
+  <script src='https://unpkg.com/swiper/swiper-bundle.min.js'></script>
+</body>
+</html>
